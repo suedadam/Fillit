@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 11:42:03 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/27 12:37:05 by asyed            ###   ########.fr       */
+/*   Updated: 2017/09/27 15:38:47 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,34 @@ void	file_reader(char *filename)
 {
 	int		fd;
 	int		r;
+	int		count;
 	int		small_grids;
-	char	buf[BUF_SIZE + 1];
+	char	*buf;
 
 	fd = open(filename, O_RDONLY);
-	while ((r = read(fd, buf, BUF_SIZE)))
+	count = 0;
+
+	buf = (char *)ft_memalloc((BUF_SIZE + 1) * sizeof(char));
+	if (!buf)
+		exit(2);
+
+	while ((r = read(fd, &buf[count], BUF_SIZE)) > 0)
 	{
-		buf[r] = '\0';
-		printf("%s\n", buf);
-		//Process data in buffer.
+		count += r;
+		if (r == BUF_SIZE)
+			buf = (char *)ft_realloc(buf, (count + 1) * sizeof(char));
 	}
+	if (r < 0)
+		exit(4);
+	buf[count] = '\0';
+	printf("(%d)\n%s\n", count, buf);
 	small_grids = numofgrids(buf);
-	// grids = (t_grid *)ft_memalloc(small_grids * sizeof(struct s_grid *));
-	grids = (t_grid *)calloc(small_grids, sizeof(struct s_grid *));
+	grids = (t_grid *)ft_memalloc(small_grids * sizeof(struct s_grid *));
 	if (!grids)
 	{
 		ft_putstr("Error in allocating small grids!");
 		exit(2);
 	}
-	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
 }
 
 int		numofgrids(char	*buf)
