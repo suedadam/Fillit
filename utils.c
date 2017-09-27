@@ -6,20 +6,20 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 12:03:47 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/27 12:31:08 by asyed            ###   ########.fr       */
+/*   Updated: 2017/09/27 12:45:50 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <unistd.h>
+// #include "fillit.h"
+// #include <unistd.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
+// void	ft_putchar(char c)
+// {
+// 	write(1, &c, 1);
+// }
 
-void	ft_putstr(char *str)
-{
-	while (*str)
-		ft_putchar(*str++);
-}
+// void	ft_putstr(char *str)
+// {
+// 	while (*str)
+// 		ft_putchar(*str++);
+// }
