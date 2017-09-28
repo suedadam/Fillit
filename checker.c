@@ -35,12 +35,15 @@ void	stage_two(int n, int *delta)
 {
 	if (stage_three(n, delta[0], 1, 0))			// X,Y (if directly to right) == 1, 2, 4, 6, 8, 11, 12, 13, 16
 		if (stage_three(n, delta[1], 1, 0))		// X,Y [2] (if directly to right) == 2, 8, 12, 16
+			
 
 	if (stage_three(n, delta[0], 0, 1))			// X,Y (if directly under) == 3, 5, 9, 14, 15, 17
 		
 	if (stage_three(n, delta[0], -1, -1))		// X,Y (if -1,-1): 7, 18, 19
 
-	if (stage_three(n, delta, -2, -1))			// It is a 10 or invalid
+	if (stage_three(n, delta[0], -2, -1))
+		if (stage_three(n, delta[1],-1,-1))
+			if (stage_three(n, delta[2], 0, 1)) // X,Y: It is a 10.
 
 
 
