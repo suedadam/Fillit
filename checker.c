@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dpearson <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 14:40:17 by dpearson          #+#    #+#             */
-/*   Updated: 2017/09/27 14:40:17 by dpearson         ###   ########.fr       */
+/*   Updated: 2017/09/28 14:14:21 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,7 @@ int		perform_check(char *buf)
 	int small_grids;
 	i = 0;
 	small_grids = numofgrids(buf);
-	grids = (t_grid *)ft_memalloc((small_grids + 1) * sizeof(struct s_grid *));
-		// Grid population ends with grids[end] = NULL;
+	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
 	if (!grids)
 	{
 		ft_putstr("Error in allocating small grids!");
