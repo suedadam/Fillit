@@ -24,6 +24,28 @@ int		numofgrids(char	*buf)
 	return (i);
 }
 
+int		stage_three(int n, int delta, int row_delta, int col_delta)
+{
+	if (((delta / 5) - (n / 5) == row_delta) && (((delta % 5) == (n % 5)) == col_delta))
+		return (1);
+	return (0);
+}
+
+void	stage_two(int n, int *delta)
+{
+	if (stage_three(n, delta[0], 1, 0))			// X,Y (if directly to right) == 1, 2, 4, 6, 8, 11, 12, 13, 16
+		if (stage_three(n, delta[1], 1, 0))		// X,Y [2] (if directly to right) == 2, 8, 12, 16
+
+	if (stage_three(n, delta[0], 0, 1))			// X,Y (if directly under) == 3, 5, 9, 14, 15, 17
+		
+	if (stage_three(n, delta[0], -1, -1))		// X,Y (if -1,-1): 7, 18, 19
+
+	if (stage_three(n, delta, -2, -1))			// It is a 10 or invalid
+
+
+
+}
+
 void	stage_one(int n, char *buf)
 {
 	int delta[3];
@@ -41,7 +63,9 @@ void	stage_one(int n, char *buf)
 		}
 		i++;
 	}
-	
+	stage_two(n, delta);
+	// n/5 gets me the row 
+	// n % 5 gets me the column
 
 }
 
