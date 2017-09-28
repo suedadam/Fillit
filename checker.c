@@ -19,8 +19,11 @@ int		numofgrids(char	*buf)
 
 	i = 1;
 	while (*buf)
-		if (*buf++ == '\n' && *((buf + 1) == '\n'))
+	{
+		if (*buf == '\n' && *(buf + 1) == '\n')
 			i++;
+		buf++;
+	}
 	return (i);
 }
 
@@ -52,9 +55,9 @@ void	stage_two(int n, int *delta)
 				struct_add(16);
 		if (stage_three(n, delta[1], 0, 1))
 			if (stage_three(n, delta[2], 1, 1))
-				struct_add(1)
+				struct_add(1);
 			if (stage_three(n, delta[2], 0, 2))
-				struct_add(13)
+				struct_add(13);
 		if (stage_three(n, delta[1], 1, 1))
 			if (stage_three(n, delta[2], 2, 1))
 				struct_add(6);
@@ -86,7 +89,7 @@ void	stage_two(int n, int *delta)
 			struct_add(19);
 	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
 		struct_add(10);
-	ft_putstr("error\n"); 	// put an error if it gets this far.
+	ft_putstr("error stage_two\n"); 
 	exit(3);	
 }
 
@@ -112,11 +115,15 @@ void	stage_one(int n, char *buf)
 
 int		error_check(char c, int i, int hash)
 {
-	if ((c != '\n') || (c != '.') || (c != '#'))
+	if ((c != '\n') && (c != '.') && (c != '#'))
 		return (0);
-	if ((!(i % 5)) && (c != '\n'))
+	if (i == 0 && c != '.' && c != '#')
 		return (0);
-	if ((i == 21) && ((i != '\n') || (hash > 4)))
+	if (i != 20 && (!(i + 1 % 5)) && i != 0)
+		return (0);
+	if (hash > 4)
+		return (0);
+	if (i == 20 && (c != '\n' || hash < 4))
 		return (0);
 	return (1);
 }
@@ -132,20 +139,21 @@ int		convert_buf(char *buf)
 	{
 		if (!(error_check(*buf, i, hash)))
 			return (0);
-		if (i == 21)
+		if (i == 20) // i starts at 0, so 21st spot is 20.
 		{
 			i = -1;
 			hash = 0;
 		}
-		if (*buf = '#' && (hash++))
+		if ((*buf == '#') && (hash++))
 			if (hash == 1)
-				stage_one(i + 1, *buf);
+				stage_one(i + 1, buf);
 		i++;
 		buf++;
 	}
+	return (1);
 }
 
-int		perform_check(char *buf)
+void		perform_check(char *buf)
 {
 	int small_grids;
 
@@ -156,11 +164,10 @@ int		perform_check(char *buf)
 		ft_putstr("Error in allocating small grids!");
 		exit(2);
 	}
-	if (!convert_buf(buf)) // will be using global variable grids. If there is an issue, returns 0
+	if (!(convert_buf(buf))) // will be using global variable grids. If there is an issue, returns 0
 	{
 		ft_putstr("error\n");
 		exit(3);
 	}
 	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));	
-
 }

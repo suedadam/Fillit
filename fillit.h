@@ -14,6 +14,12 @@
 
 # include <unistd.h>
 # include "libft.h"
+# include <stdint.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
 
 # define BUF_SIZE 2
 
@@ -24,6 +30,7 @@ typedef	struct			s_grid
 
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
+void	perform_check(char *buf);
 
 extern	t_grid	*grids;
 #endif
