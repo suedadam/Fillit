@@ -19,13 +19,9 @@
 
 typedef	struct	s_grid
 {
-	char	type;
-	char	x;
-	char	y;
+	uint8_t	i; //will hold value from 0-18 or 1-19 
 }				t_grid;
 
-// void	ft_putchar(char c);
-// void	ft_putstr(char *str);
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 
