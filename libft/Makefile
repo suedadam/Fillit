@@ -25,7 +25,7 @@ FILENAMES	=	ft_memset.c ft_memcpy.c ft_memalloc.c ft_bzero.c ft_memccpy.c  \
 				ft_strcmp.c ft_strncmp.c ft_strstr.c ft_strnstr.c ft_strsplit.c\
 				ft_atoi.c ft_memmove.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c  \
 				ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_nbr_len.c ft_iseven.c  \
-				ft_isodd.c ft_isupper.c ft_islower.c
+				ft_isodd.c ft_isupper.c ft_islower.c ft_realloc.c 
 
 
 OBJECTS		= ${FILENAMES:c=o}
