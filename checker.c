@@ -31,47 +31,63 @@ int		stage_three(int n, int delta, int row_delta, int col_delta)
 	return (0);
 }
 
+void	struct_add(int j)
+{
+	while (grids->i)
+		grids++;
+	grids->i = j;
+}
+
 void	stage_two(int n, int *delta)
 {
 	if (stage_three(n, delta[0], 1, 0))	
 		if ((stage_three(n, delta[1], 1, 0)))
 			if (stage_three(n, delta[2], 2, 0))
-				// this is for 2
+				struct_add(2);
 			if (stage_three(n, delta[2], 0, 1))
-				// this is for 8
+				struct_add(8);
 			if (stage_three(n, delta[2], 2, 1))
-				// this is for 12
+				struct_add(12);
 			if (stage_three(n, delta[2], 1, 1))
-				//this is for 16
+				struct_add(16);
 		if (stage_three(n, delta[1], 0, 1))
 			if (stage_three(n, delta[2], 1, 1))
-				// this is for 1
+				struct_add(1)
 			if (stage_three(n, delta[2], 0, 2))
-				//this is 13
-		if (stage_three(n, delta[1], 1, 1)) // 6 or 11
+				struct_add(13)
+		if (stage_three(n, delta[1], 1, 1))
 			if (stage_three(n, delta[2], 2, 1))
-				// this is 6
+				struct_add(6);
 			if (stage_three(n, delta[2], 1, 2))
-				// this is 11
+				struct_add(11);
 		if (stage_three(n, delta[1], -1, 1) && stage_three(n, delta[2], 0, 1))
-				//this is 4	
+				struct_add(4);	
 	if (stage_three(n, delta[0], 0, 1))
 		if(stage_three(n, delta[1], 0, 2))
-			// this is 3, 9
+			if (stage_three(n, delta[2], 0, 3))
+				struct_add(3);
+			if (stage_three(n, delta[2], 1, 2))
+				struct_add(9);
 		if (stage_three(n, delta[1], 1, 1))
-			// this is 5, 14, 17
+			if (stage_three(n, delta[2], 1, 2))
+				struct_add(5);
+			if (stage_three(n, delta[2], 2, 1))
+				struct_add(14);
+			if (stage_three(n, delta[2], 0, 2))
+				struct_add(17);
 		if (stage_three(n, delta[1], -1, 2) && stage_three(n ,delta[2], 0, 2))
-			// this is 15
+			struct_add(15);
 	if (stage_three(n, delta[0], -1, -1) && stage_three(n, delta[1], 0, 1))
 		if (stage_three(n, delta[2], -1, 2))
-			//this is 7
+			struct_add(7);
 		if (stage_three(n, delta[2], 1, 1))
-			//this is 18
+			struct_add(18);
 		if (stage_three(n, delta[2], 0, 2))
-			//this is 19
+			struct_add(19);
 	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
-		// this is a 10
-	//ERROR IF NEVER FITS AN IF	
+		struct_add(10);
+	ft_putstr("error\n"); 	// put an error if it gets this far.
+	exit(3);	
 }
 
 void	stage_one(int n, char *buf)
@@ -92,9 +108,6 @@ void	stage_one(int n, char *buf)
 		i++;
 	}
 	stage_two(n, delta);
-	// n/5 gets me the row 
-	// n % 5 gets me the column
-
 }
 
 int		error_check(char c, int i, int hash)
@@ -134,9 +147,8 @@ int		convert_buf(char *buf)
 
 int		perform_check(char *buf)
 {
-	int i;
 	int small_grids;
-	i = 0;
+
 	small_grids = numofgrids(buf);
 	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
 	if (!grids)
