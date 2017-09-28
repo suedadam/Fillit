@@ -33,20 +33,45 @@ int		stage_three(int n, int delta, int row_delta, int col_delta)
 
 void	stage_two(int n, int *delta)
 {
-	if (stage_three(n, delta[0], 1, 0))			// X,Y (if directly to right) == 1, 2, 4, 6, 8, 11, 12, 13, 16
-		if (stage_three(n, delta[1], 1, 0))		// X,Y [2] (if directly to right) == 2, 8, 12, 16
-			
-
-	if (stage_three(n, delta[0], 0, 1))			// X,Y (if directly under) == 3, 5, 9, 14, 15, 17
-		
-	if (stage_three(n, delta[0], -1, -1))		// X,Y (if -1,-1): 7, 18, 19
-
-	if (stage_three(n, delta[0], -2, -1))
-		if (stage_three(n, delta[1],-1,-1))
-			if (stage_three(n, delta[2], 0, 1)) // X,Y: It is a 10.
-
-
-
+	if (stage_three(n, delta[0], 1, 0))	
+		if ((stage_three(n, delta[1], 1, 0)))
+			if (stage_three(n, delta[2], 2, 0))
+				// this is for 2
+			if (stage_three(n, delta[2], 0, 1))
+				// this is for 8
+			if (stage_three(n, delta[2], 2, 1))
+				// this is for 12
+			if (stage_three(n, delta[2], 1, 1))
+				//this is for 16
+		if (stage_three(n, delta[1], 0, 1))
+			if (stage_three(n, delta[2], 1, 1))
+				// this is for 1
+			if (stage_three(n, delta[2], 0, 2))
+				//this is 13
+		if (stage_three(n, delta[1], 1, 1)) // 6 or 11
+			if (stage_three(n, delta[2], 2, 1))
+				// this is 6
+			if (stage_three(n, delta[2], 1, 2))
+				// this is 11
+		if (stage_three(n, delta[1], -1, 1) && stage_three(n, delta[2], 0, 1))
+				//this is 4	
+	if (stage_three(n, delta[0], 0, 1))
+		if(stage_three(n, delta[1], 0, 2))
+			// this is 3, 9
+		if (stage_three(n, delta[1], 1, 1))
+			// this is 5, 14, 17
+		if (stage_three(n, delta[1], -1, 2) && stage_three(n ,delta[2], 0, 2))
+			// this is 15
+	if (stage_three(n, delta[0], -1, -1) && stage_three(n, delta[1], 0, 1))
+		if (stage_three(n, delta[2], -1, 2))
+			//this is 7
+		if (stage_three(n, delta[2], 1, 1))
+			//this is 18
+		if (stage_three(n, delta[2], 0, 2))
+			//this is 19
+	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
+		// this is a 10
+	//ERROR IF NEVER FITS AN IF	
 }
 
 void	stage_one(int n, char *buf)
