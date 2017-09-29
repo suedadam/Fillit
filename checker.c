@@ -29,68 +29,90 @@ int		numofgrids(char	*buf)
 
 int		stage_three(int n, int delta, int row_delta, int col_delta)
 {
-	if (((delta / 5) - (n / 5) == row_delta) && (((delta % 5) == (n % 5)) == col_delta))
+	//printf("DELTA: %d N: %d\n", delta, n);
+	//printf("ROW_DELTA: %d, COL_DELTA: %d\n",row_delta, col_delta);
+	//printf("%d %d\n", (((delta + n) % 5) - n % 5), (((delta + n) / 5) - (n / 5)));
+	if (((((delta + n) % 5) - n % 5) == row_delta) && ((((delta + n) / 5) - (n / 5)) == col_delta))
 		return (1);
 	return (0);
 }
 
-void	struct_add(int j)
+int	struct_add(int j)
 {
 	while (grids->i)
 		grids++;
+	printf("Added type: %d\n", j);
 	grids->i = j;
+	return (1);
 }
 
-void	stage_two(int n, int *delta)
+int	stage_two(int n, int *delta)
 {
-	if (stage_three(n, delta[0], 1, 0))	
-		if ((stage_three(n, delta[1], 1, 0)))
-			if (stage_three(n, delta[2], 2, 0))
-				struct_add(2);
+	if (stage_three(n, delta[0], 1, 0))
+	{
+		if ((stage_three(n, delta[1], 2, 0)))
+		{
+			if (stage_three(n, delta[2], 3, 0))
+				return(struct_add(2));
 			if (stage_three(n, delta[2], 0, 1))
-				struct_add(8);
+				return(struct_add(8));
 			if (stage_three(n, delta[2], 2, 1))
-				struct_add(12);
+				return(struct_add(12));
 			if (stage_three(n, delta[2], 1, 1))
-				struct_add(16);
+				return(struct_add(16));
+		}
 		if (stage_three(n, delta[1], 0, 1))
+		{
 			if (stage_three(n, delta[2], 1, 1))
-				struct_add(1);
+				return(struct_add(1));
 			if (stage_three(n, delta[2], 0, 2))
-				struct_add(13);
+				return(struct_add(13));
+		}
 		if (stage_three(n, delta[1], 1, 1))
+		{
 			if (stage_three(n, delta[2], 2, 1))
-				struct_add(6);
+				return(struct_add(6));
 			if (stage_three(n, delta[2], 1, 2))
-				struct_add(11);
+				return(struct_add(11));
+		}
 		if (stage_three(n, delta[1], -1, 1) && stage_three(n, delta[2], 0, 1))
-				struct_add(4);	
+				return(struct_add(4));
+	}
 	if (stage_three(n, delta[0], 0, 1))
+	{
 		if(stage_three(n, delta[1], 0, 2))
+		{
 			if (stage_three(n, delta[2], 0, 3))
-				struct_add(3);
+				return(struct_add(3));
 			if (stage_three(n, delta[2], 1, 2))
-				struct_add(9);
+				return(struct_add(9));
+		}
 		if (stage_three(n, delta[1], 1, 1))
+		{
 			if (stage_three(n, delta[2], 1, 2))
-				struct_add(5);
+				return(struct_add(5));
 			if (stage_three(n, delta[2], 2, 1))
-				struct_add(14);
+				return(struct_add(14));
 			if (stage_three(n, delta[2], 0, 2))
-				struct_add(17);
+				return(struct_add(17));
+		}
 		if (stage_three(n, delta[1], -1, 2) && stage_three(n ,delta[2], 0, 2))
-			struct_add(15);
+			return(struct_add(15));
+	}
 	if (stage_three(n, delta[0], -1, -1) && stage_three(n, delta[1], 0, 1))
+	{
 		if (stage_three(n, delta[2], -1, 2))
-			struct_add(7);
+			return(struct_add(7));
 		if (stage_three(n, delta[2], 1, 1))
-			struct_add(18);
+			return(struct_add(18));
 		if (stage_three(n, delta[2], 0, 2))
-			struct_add(19);
+			return(struct_add(19));
+	}
 	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
-		struct_add(10);
+		return(struct_add(10));
 	ft_putstr("error stage_two\n"); 
-	exit(3);	
+	exit(3);
+	return (0);	
 }
 
 void	stage_one(int n, char *buf)
@@ -99,11 +121,11 @@ void	stage_one(int n, char *buf)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	while (buf[i])
 	{
-		if (buf[i] == '#')
+		if (buf[i] == '#' && j < 3)
 		{
 			delta[j] = i;
 			j++;
@@ -144,9 +166,14 @@ int		convert_buf(char *buf)
 			i = -1;
 			hash = 0;
 		}
-		if ((*buf == '#') && (hash++))
+		if (*buf == '#')
+		{
+			hash++;
 			if (hash == 1)
+			{
 				stage_one(i + 1, buf);
+			}
+		}
 		i++;
 		buf++;
 	}
