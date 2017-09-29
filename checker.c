@@ -29,9 +29,6 @@ int		numofgrids(char	*buf)
 
 int		stage_three(int n, int delta, int row_delta, int col_delta)
 {
-	//printf("DELTA: %d N: %d\n", delta, n);
-	//printf("ROW_DELTA: %d, COL_DELTA: %d\n",row_delta, col_delta);
-	//printf("%d %d\n", (((delta + n) % 5) - n % 5), (((delta + n) / 5) - (n / 5)));
 	if (((((delta + n) % 5) - n % 5) == row_delta) && ((((delta + n) / 5) - (n / 5)) == col_delta))
 		return (1);
 	return (0);
@@ -112,9 +109,7 @@ int	stage_two(int n, int *delta)
 	}
 	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
 		return(struct_add(10));
-	ft_putstr("error stage_two\n"); 
-	exit(3);
-	return (0);	
+	return (0);
 }
 
 void	stage_one(int n, char *buf)
@@ -134,7 +129,11 @@ void	stage_one(int n, char *buf)
 		}
 		i++;
 	}
-	stage_two(n, delta);
+	if (!(stage_two(n, delta)))
+	{
+		ft_putstr("error stage_two\n"); 
+		exit(3);		
+	}
 }
 
 int		error_check(char c, int i, int hash)
@@ -163,7 +162,7 @@ int		convert_buf(char *buf)
 	{
 		if (!(error_check(*buf, i, hash)))
 			return (0);
-		if (i == 20) // i starts at 0, so 21st spot is 20.
+		if (i == 20)
 		{
 			i = -1;
 			hash = 0;
@@ -172,9 +171,7 @@ int		convert_buf(char *buf)
 		{
 			hash++;
 			if (hash == 1)
-			{
 				stage_one(i + 1, buf);
-			}
 		}
 		i++;
 		buf++;
@@ -193,7 +190,7 @@ void		perform_check(char *buf)
 		ft_putstr("Error in allocating small grids!");
 		exit(2);
 	}
-	if (!(convert_buf(buf))) // will be using global variable grids. If there is an issue, returns 0
+	if (!(convert_buf(buf)))
 	{
 		ft_putstr("error\n");
 		exit(3);
