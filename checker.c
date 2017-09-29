@@ -6,12 +6,15 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 14:40:17 by dpearson          #+#    #+#             */
-/*   Updated: 2017/09/28 14:14:21 by asyed            ###   ########.fr       */
+/*   Updated: 2017/09/29 10:12:19 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
+
+t_grid	*grids;
+t_info	*solveinfo;
 
 int		numofgrids(char	*buf)
 {
@@ -188,6 +191,9 @@ void		perform_check(char *buf)
 
 	small_grids = numofgrids(buf);
 	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
+	minimumset(small_grids);
+	solveinfo = (t_info *)ft_memalloc(sizeof(struct s_info *));
+	solveinfo->minimum = small_grids;
 	if (!grids)
 	{
 		ft_putstr("Error in allocating small grids!");

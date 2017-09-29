@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 11:43:42 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/28 14:14:38 by asyed            ###   ########.fr       */
+/*   Updated: 2017/09/29 11:34:17 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FILLIT_H
@@ -28,9 +28,24 @@ typedef	struct			s_grid
 	uint8_t	i:5; //will hold value from 0-18 or 1-19 
 } __attribute__((packed)) t_grid;
 
+typedef struct 			s_info
+{
+	int		minimum;
+	char	*solvedgrid;
+}						t_info;
+
+typedef struct 			s_pieces;
+{
+	int	*x;
+	int	*y;
+}						t_pieces;
+
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 void	perform_check(char *buf);
+void	solve(void);
 
-extern	t_grid	*grids;
+extern	t_grid		*grids;
+extern	t_info		*solveinfo;
+extern	t_pieces	*pieces;
 #endif

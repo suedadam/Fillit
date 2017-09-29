@@ -6,14 +6,11 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 11:42:03 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/28 13:59:40 by asyed            ###   ########.fr       */
+/*   Updated: 2017/09/29 10:07:53 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-t_grid	*grids;
-
 /*
 ** Lets have a seperate function to read the file from, this is 
 ** opening in read only mode.

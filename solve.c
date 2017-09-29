@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/27 12:03:47 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/29 10:10:53 by asyed            ###   ########.fr       */
+/*   Created: 2017/09/29 10:03:27 by asyed             #+#    #+#             */
+/*   Updated: 2017/09/29 11:34:17 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "fillit.h"
+#include "fillit.h"
 
-// void	ft_putchar(char c)
-// {
-// 	write(1, &c, 1);
-// }
+void	solve(void)
+{
+	char	**solvegrid;
 
-// void	ft_putstr(char *str)
-// {
-// 	while (*str)
-// 		ft_putchar(*str++);
-// }
+	solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
+	*solvegrid = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
+	
+}
