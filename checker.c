@@ -39,10 +39,12 @@ int		stage_three(int n, int delta, int row_delta, int col_delta)
 
 int	struct_add(int j)
 {
-	while (grids->i)
-		grids++;
-	printf("Added type: %d\n", j);
-	grids->i = j;
+	int i;
+
+	i = 0;
+	while (grids[i].i)
+		i++;
+	grids[i].i = j;
 	return (1);
 }
 
