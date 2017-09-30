@@ -14,7 +14,7 @@
 
 t_pieces	*pieces;
 
-void	add_piece(int *x, int *y)
+void	add_pieces(int *x, int *y)
 {
 	int i;
 
@@ -40,9 +40,6 @@ int *make_array(int x, int x2, int x3)
 
 void	populate_struct(void)
 {
-	int i;
-
-	i = 20;
 	pieces = (t_pieces *)ft_memalloc((20) * sizeof(t_pieces));
 	add_pieces(make_array(1,0,1), make_array(0,1,1)); //1
 	add_pieces(make_array(1,2,3), make_array(0,0,0)); //2
@@ -65,7 +62,32 @@ void	populate_struct(void)
 	add_pieces(make_array(-1,0,0), make_array(1,1,2)); //19
 }
 
-void	what_type(int n, int pos)
+int		stage_three(int n, int delta, int row_delta, int col_delta)
 {
+	if (((((delta + n) % 5) - n % 5) == row_delta) && ((((delta + n) / 5) - (n / 5)) == col_delta))
+		return (1);
+	return (0);
+}
 
+int	what_type(int n, int *delta)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (pieces[i])
+	{
+		j = 0;
+		while (j < 3)
+		{
+			if (!(stage_three(n, delta[j], pieces[i].x[j], pieces[i].y[j])))
+				break;
+			if (j == 2)
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	ft_putstr("error\n");
+	exit(3);
 }

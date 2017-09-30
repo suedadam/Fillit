@@ -34,16 +34,17 @@ typedef struct 			s_info
 	char	*solvedgrid;
 }						t_info;
 
-typedef struct 			s_pieces;
+typedef struct 			s_pieces
 {
-	int	*x;
-	int	*y;
+	int		*x;
+	int		*y;
 }						t_pieces;
 
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 void	perform_check(char *buf);
 void	solve(void);
+int	what_type(int n, int *delta);
 
 extern	t_grid		*grids;
 extern	t_info		*solveinfo;

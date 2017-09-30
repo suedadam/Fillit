@@ -32,9 +32,6 @@ int		numofgrids(char	*buf)
 
 int		stage_three(int n, int delta, int row_delta, int col_delta)
 {
-	//printf("DELTA: %d N: %d\n", delta, n);
-	//printf("ROW_DELTA: %d, COL_DELTA: %d\n",row_delta, col_delta);
-	//printf("%d %d\n", (((delta + n) % 5) - n % 5), (((delta + n) / 5) - (n / 5)));
 	if (((((delta + n) % 5) - n % 5) == row_delta) && ((((delta + n) / 5) - (n / 5)) == col_delta))
 		return (1);
 	return (0);
@@ -51,6 +48,12 @@ int	struct_add(int j)
 	return (1);
 }
 
+int	stage_two(int n, int *delta)
+{
+	return (struct_add(what_type(n , delta)));
+}
+
+/*
 int	stage_two(int n, int *delta)
 {
 	if (stage_three(n, delta[0], 1, 0))
@@ -115,11 +118,9 @@ int	stage_two(int n, int *delta)
 	}
 	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
 		return(struct_add(10));
-	ft_putstr("error stage_two\n"); 
-	exit(3);
 	return (0);	
 }
-
+*/
 void	stage_one(int n, char *buf)
 {
 	int delta[3];
