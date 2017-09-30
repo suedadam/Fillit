@@ -9,6 +9,7 @@
 /*   Updated: 2017/09/29 11:34:17 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef FILLIT_H
 # define FILLIT_H
 
@@ -23,28 +24,28 @@
 
 # define BUF_SIZE 2
 
-typedef	struct			s_grid
+typedef	struct				s_grid
 {
-	uint8_t	i:5; //will hold value from 0-18 or 1-19 
-} __attribute__((packed)) t_grid;
+	uint8_t	i:5;//will hold value from 0-18 or 1-19å
+} __attribute__((packed))	t_grid;
 
-typedef struct 			s_info
+typedef struct				s_info
 {
 	int		minimum;
 	char	*solvedgrid;
-}						t_info;
+}							t_info;
 
-typedef struct 			s_pieces
+typedef struct				s_pieces
 {
 	int		*x;
 	int		*y;
-}						t_pieces;
+}							t_pieces;
 
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 void	perform_check(char *buf);
 void	solve(void);
-int	what_type(int n, int *delta);
+int		what_type(int n, int *delta);
 void	populate_struct(void);
 
 extern	t_grid		*grids;

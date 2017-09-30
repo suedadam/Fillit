@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+
 /*
-** Lets have a seperate function to read the file from, this is 
+** Lets have a seperate function to read the file from, this is
 ** opening in read only mode.
 */
+
 void	file_reader(char *filename)
 {
 	int		fd;
@@ -24,7 +26,6 @@ void	file_reader(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	count = 0;
-
 	buf = (char *)ft_memalloc((BUF_SIZE + 1) * sizeof(char));
 	if (!buf)
 		exit(2);

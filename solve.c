@@ -18,5 +18,4 @@ void	solve(void)
 
 	solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
 	*solvegrid = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
-	
 }

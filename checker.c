@@ -16,7 +16,7 @@
 t_grid	*grids;
 t_info	*solveinfo;
 
-int		numofgrids(char	*buf)
+int		numofgrids(char *buf)
 {
 	int	i;
 
@@ -87,7 +87,7 @@ int		convert_buf(char *buf)
 	{
 		if (!(error_check(*buf, i, hash)))
 			return (0);
-		if (i == 20) // i starts at 0, so 21st spot is 20.
+		if (i == 20)
 		{
 			i = -1;
 			hash = 0;
@@ -96,9 +96,7 @@ int		convert_buf(char *buf)
 		{
 			hash++;
 			if (hash == 1)
-			{
 				stage_one(i + 1, buf);
-			}
 		}
 		i++;
 		buf++;
@@ -120,10 +118,10 @@ void		perform_check(char *buf)
 		ft_putstr("Error in allocating small grids!");
 		exit(2);
 	}
-	if (!(convert_buf(buf))) // will be using global variable grids. If there is an issue, returns 0
+	if (!(convert_buf(buf)))
 	{
 		ft_putstr("error\n");
 		exit(3);
 	}
-	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));	
+	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
 }
