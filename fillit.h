@@ -45,6 +45,7 @@ int		numofgrids(char	*buf);
 void	perform_check(char *buf);
 void	solve(void);
 int	what_type(int n, int *delta);
+void	populate_struct(void);
 
 extern	t_grid		*grids;
 extern	t_info		*solveinfo;

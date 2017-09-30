@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 t_pieces	*pieces;
 
@@ -19,7 +20,7 @@ void	add_pieces(int *x, int *y)
 	int i;
 
 	i = 0;
-	while (pieces[i])
+	while (pieces[i].x) // Verify this is okay.
 	{
 		i++;
 	}
@@ -69,13 +70,13 @@ int		stage_three(int n, int delta, int row_delta, int col_delta)
 	return (0);
 }
 
-int	what_type(int n, int *delta)
+int		what_type(int n, int *delta)
 {
 	int i;
 	int j;
 
 	i = 0;
-	while (pieces[i])
+	while (pieces[i].x) // Verify this is okay.
 	{
 		j = 0;
 		while (j < 3)
