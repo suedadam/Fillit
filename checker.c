@@ -68,8 +68,9 @@ int		error_check(char c, int i, int hash)
 		return (0);
 	if (i == 0 && c != '.' && c != '#')
 		return (0);
-	if (i != 20 && (!(i + 1 % 5)) && i != 0)
-		return (0);
+	//if (i != 20 && (!(i + 1 % 5)) && i != 0) We must have forgotten to remove this garbage
+	//	return (0);
+	// Add in a check for having a non-newline at a divisible of 5.
 	if (hash > 4)
 		return (0);
 	if (i == 20 && (c != '\n' || hash < 4))
