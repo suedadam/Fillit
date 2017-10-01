@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 10:03:27 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/01 12:51:05 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/01 13:04:58 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,30 @@ int	solve(void)
 	int	j;
 	void	*save;
 
-	solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
-	*solvegrid = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
+	// solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
+	// *solvegrid = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
+
+	solvegrid = (char **)malloc(solveinfo->minimum * sizeof(char *));
+	*solvegrid = (char *)malloc(solveinfo->minimum * sizeof(char));
 	piecement = 0;
 	i = 0;
 	j = 0;
 	save = grids;
 
-	while (solvegrid[i])
+	while (i < (solveinfo->minimum - 1))
 	{
-		while (solvegrid[i][j])
+		j = 0;
+		printf("i = %d\n", i);
+		while (j < (solveinfo->minimum - 1))
 		{
+			printf("Setting %d:%d\n", i, j);
 			solvegrid[i][j] = '.';
+			printf("solvegrid[%d][%d] = %c\n", i, j, solvegrid[i][j]);
 			j++;
 		}
 		i++;
 	}
-	i = 0;
-	while (solvegrid[i])
-	{
-		printf("%s\n", solvegrid[i]);
-		i++;
-	}
-	printf("%c\n", solvegrid[0][2]);
+
 	while (solvegrid[i])
 	{
 		while (solvegrid[i][j])
