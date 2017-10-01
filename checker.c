@@ -6,14 +6,17 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 14:40:17 by dpearson          #+#    #+#             */
-/*   Updated: 2017/09/28 14:14:21 by asyed            ###   ########.fr       */
+/*   Updated: 2017/09/29 10:12:19 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-int		numofgrids(char	*buf)
+t_grid	*grids;
+t_info	*solveinfo;
+
+int		numofgrids(char *buf)
 {
 	int	i;
 
@@ -27,13 +30,6 @@ int		numofgrids(char	*buf)
 	return (i);
 }
 
-int		stage_three(int n, int delta, int row_delta, int col_delta)
-{
-	if (((((delta + n) % 5) - n % 5) == row_delta) && ((((delta + n) / 5) - (n / 5)) == col_delta))
-		return (1);
-	return (0);
-}
-
 int	struct_add(int j)
 {
 	int i;
@@ -45,72 +41,6 @@ int	struct_add(int j)
 	return (1);
 }
 
-int	stage_two(int n, int *delta)
-{
-	if (stage_three(n, delta[0], 1, 0))
-	{
-		if ((stage_three(n, delta[1], 2, 0)))
-		{
-			if (stage_three(n, delta[2], 3, 0))
-				return(struct_add(2));
-			if (stage_three(n, delta[2], 0, 1))
-				return(struct_add(8));
-			if (stage_three(n, delta[2], 2, 1))
-				return(struct_add(12));
-			if (stage_three(n, delta[2], 1, 1))
-				return(struct_add(16));
-		}
-		if (stage_three(n, delta[1], 0, 1))
-		{
-			if (stage_three(n, delta[2], 1, 1))
-				return(struct_add(1));
-			if (stage_three(n, delta[2], 0, 2))
-				return(struct_add(13));
-		}
-		if (stage_three(n, delta[1], 1, 1))
-		{
-			if (stage_three(n, delta[2], 2, 1))
-				return(struct_add(6));
-			if (stage_three(n, delta[2], 1, 2))
-				return(struct_add(11));
-		}
-		if (stage_three(n, delta[1], -1, 1) && stage_three(n, delta[2], 0, 1))
-				return(struct_add(4));
-	}
-	if (stage_three(n, delta[0], 0, 1))
-	{
-		if(stage_three(n, delta[1], 0, 2))
-		{
-			if (stage_three(n, delta[2], 0, 3))
-				return(struct_add(3));
-			if (stage_three(n, delta[2], 1, 2))
-				return(struct_add(9));
-		}
-		if (stage_three(n, delta[1], 1, 1))
-		{
-			if (stage_three(n, delta[2], 1, 2))
-				return(struct_add(5));
-			if (stage_three(n, delta[2], 2, 1))
-				return(struct_add(14));
-			if (stage_three(n, delta[2], 0, 2))
-				return(struct_add(17));
-		}
-		if (stage_three(n, delta[1], -1, 2) && stage_three(n ,delta[2], 0, 2))
-			return(struct_add(15));
-	}
-	if (stage_three(n, delta[0], -1, -1) && stage_three(n, delta[1], 0, 1))
-	{
-		if (stage_three(n, delta[2], -1, 2))
-			return(struct_add(7));
-		if (stage_three(n, delta[2], 1, 1))
-			return(struct_add(18));
-		if (stage_three(n, delta[2], 0, 2))
-			return(struct_add(19));
-	}
-	if (stage_three(n, delta[0], -2, -1) && stage_three(n, delta[1],-1,-1) && stage_three(n, delta[2], 0, 1))
-		return(struct_add(10));
-	return (0);
-}
 
 void	stage_one(int n, char *buf)
 {
@@ -129,11 +59,7 @@ void	stage_one(int n, char *buf)
 		}
 		i++;
 	}
-	if (!(stage_two(n, delta)))
-	{
-		ft_putstr("error stage_two\n"); 
-		exit(3);		
-	}
+	struct_add(what_type(n, delta));
 }
 
 int		error_check(char c, int i, int hash)
@@ -185,6 +111,9 @@ void		perform_check(char *buf)
 
 	small_grids = numofgrids(buf);
 	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
+	//minimumset(small_grids); YOU DIDN'T MAKE THIS YET ADAM
+	solveinfo = (t_info *)ft_memalloc(sizeof(struct s_info *));
+	solveinfo->minimum = small_grids;
 	if (!grids)
 	{
 		ft_putstr("Error in allocating small grids!");
@@ -195,5 +124,5 @@ void		perform_check(char *buf)
 		ft_putstr("error\n");
 		exit(3);
 	}
-	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));	
+	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
 }

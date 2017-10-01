@@ -16,6 +16,7 @@ int	main(int argc, char *argv[])
 {
 	if (argc == 2)
 	{
+		populate_struct();
 		file_reader(argv[1]);
 		printf("%d, %d, %d, %d\n", grids[0].i, grids[1].i, grids[2].i, grids[3].i);
 	}
