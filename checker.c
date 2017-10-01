@@ -41,6 +41,7 @@ int	struct_add(int j)
 	return (1);
 }
 
+
 void	stage_one(int n, char *buf)
 {
 	int delta[3];
