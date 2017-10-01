@@ -23,7 +23,7 @@ $(NAME): $(LIBFT)
 	@echo "\033[32mCompiled Executable\033[0m"
 
 clean:
-	@rm -rf $(OBJ)
+	#@rm -rf $(OBJ) Commented out, as we do not make object files. Should we remove this line?
 	@make -C libft clean
 	@echo "\033[32mRemoved Object Files\033[0m"
 
