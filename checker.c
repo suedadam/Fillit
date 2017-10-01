@@ -6,12 +6,14 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 14:40:17 by dpearson          #+#    #+#             */
-/*   Updated: 2017/09/28 14:14:21 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/01 12:39:09 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
+
+t_info	*solveinfo;
 
 int		numofgrids(char	*buf)
 {
@@ -184,16 +186,19 @@ void		perform_check(char *buf)
 	int small_grids;
 
 	small_grids = numofgrids(buf);
+	solveinfo = (t_info *)ft_memalloc(sizeof(solveinfo));
 	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
 	if (!grids)
 	{
 		ft_putstr("Error in allocating small grids!");
 		exit(2);
 	}
+	minimumset(small_grids);
 	if (!(convert_buf(buf)))
 	{
 		ft_putstr("error\n");
 		exit(3);
 	}
+	printf("Solve resp: %d\n", solve());
 	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));	
 }

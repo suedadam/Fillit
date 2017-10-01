@@ -6,20 +6,22 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 12:03:47 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/27 13:15:01 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/01 12:27:07 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "fillit.h"
-// #include <unistd.h>
+#include "fillit.h"
 
-// void	ft_putchar(char c)
-// {
-// 	write(1, &c, 1);
-// }
+void	minimumset(int small_grids)
+{
+	int i;
 
-// void	ft_putstr(char *str)
-// {
-// 	while (*str)
-// 		ft_putchar(*str++);
-// }
+	i = 0;
+	while (i < small_grids)
+	{
+		if ((i * i) >= (small_grids * small_grids))
+			break;
+		i++;
+	}
+	solveinfo->minimum = i;
+}
