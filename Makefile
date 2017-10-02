@@ -8,6 +8,7 @@ SRC = main.c \
 	parser.c \
 	utils.c \
 	checker.c \
+	solve.c \
 
 LIBFT = libft/libft.a
 

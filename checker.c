@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/27 14:40:17 by dpearson          #+#    #+#             */
-/*   Updated: 2017/09/29 10:12:19 by asyed            ###   ########.fr       */
+/*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
+/*   Updated: 2017/10/02 09:51:14 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "fillit.h"
 #include <stdio.h>
@@ -16,7 +17,7 @@
 t_grid	*grids;
 t_info	*solveinfo;
 
-int		numofgrids(char *buf)
+int		numofgrids(char	*buf)
 {
 	int	i;
 
@@ -111,8 +112,8 @@ void		perform_check(char *buf)
 	int small_grids;
 
 	small_grids = numofgrids(buf);
+	solveinfo = (t_info *)ft_memalloc(sizeof(solveinfo));
 	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
-	//minimumset(small_grids); YOU DIDN'T MAKE THIS YET ADAM
 	solveinfo = (t_info *)ft_memalloc(sizeof(struct s_info *));
 	solveinfo->minimum = small_grids;
 	if (!grids)
@@ -120,10 +121,12 @@ void		perform_check(char *buf)
 		ft_putstr("Error in allocating small grids!");
 		exit(2);
 	}
+	minimumset(small_grids);
 	if (!(convert_buf(buf)))
 	{
 		ft_putstr("error\n");
 		exit(3);
 	}
 	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
+	printf("Solve resp: %d\n", solve());
 }

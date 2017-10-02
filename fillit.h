@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/27 11:43:42 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/29 11:34:17 by asyed            ###   ########.fr       */
+/*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
+/*   Updated: 2017/10/02 09:52:29 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,25 @@ typedef struct				s_pieces
 	int		*y;
 }							t_pieces;
 
+typedef struct 			s_info
+{
+	int	minimum;
+}						t_info;
+
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 void	perform_check(char *buf);
-void	solve(void);
+int		solve(void);
 int		what_type(int n, int *delta);
 void	populate_struct(void);
+int		totalplaced(void);
+int		nextpiece(void);
+void	minimumset(int small_grids);
+int		solve(void);
+
 
 extern	t_grid		*grids;
 extern	t_info		*solveinfo;
 extern	t_pieces	*pieces;
+
 #endif
