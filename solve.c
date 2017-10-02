@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 10:03:27 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/01 13:04:58 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/02 09:46:05 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,24 @@
 
 int	solve(void)
 {
-	char	**solvegrid;
+	char	**local_solvegrid;
 	int		piecement;
 	int	i;
 	int	j;
 	void	*save;
 
-	// solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
-	// *solvegrid = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
+	local_solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
 
-	solvegrid = (char **)malloc(solveinfo->minimum * sizeof(char *));
-	*solvegrid = (char *)malloc(solveinfo->minimum * sizeof(char));
 	piecement = 0;
 	i = 0;
 	j = 0;
 	save = grids;
 
-	while (i < (solveinfo->minimum - 1))
+	while (local_solvegrid[i])
 	{
-		j = 0;
-		printf("i = %d\n", i);
-		while (j < (solveinfo->minimum - 1))
-		{
-			printf("Setting %d:%d\n", i, j);
-			solvegrid[i][j] = '.';
-			printf("solvegrid[%d][%d] = %c\n", i, j, solvegrid[i][j]);
-			j++;
-		}
-		i++;
-	}
-
-	while (solvegrid[i])
-	{
-		while (solvegrid[i][j])
+		local_solvegrid[i] = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
+		local_solvegrid[i] = (char *)ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
+		while (local_solvegrid[i][j])
 		{
 			if (grids->i <= 0)
 			{
@@ -55,10 +40,10 @@ int	solve(void)
 			}
 			if (grids->i == 2)
 			{
-				solvegrid[0][0] = '#';
-				solvegrid[0][1] = '#';
-				solvegrid[0][2] = '#';
-				solvegrid[0][3] = '#';
+				local_solvegrid[0][0] = '#';
+				local_solvegrid[0][1] = '#';
+				local_solvegrid[0][2] = '#';
+				local_solvegrid[0][3] = '#';
 				j += 4;
 			}
 			else
@@ -71,9 +56,9 @@ int	solve(void)
 	}
 	i = 0;
 	printf("Min; %d\n", solveinfo->minimum);
-	while (solvegrid[i])
+	while (local_solvegrid[i])
 	{
-		printf("%s\n", solvegrid[i]);
+		printf("%s\n", local_solvegrid[i]);
 		i++;
 	}
 	return (1);
