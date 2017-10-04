@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 09:52:29 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/02 11:53:12 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 
 # define BUF_SIZE 2
+# define MAX(a,b) (((a)>(b))?(a):(b))
 
 typedef	struct				s_grid
 {
@@ -41,11 +42,6 @@ typedef struct				s_pieces
 	int		*y;
 }							t_pieces;
 
-typedef struct 			s_info
-{
-	int	minimum;
-}						t_info;
-
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 void	perform_check(char *buf);
@@ -56,6 +52,7 @@ int		totalplaced(void);
 int		nextpiece(void);
 void	minimumset(int small_grids);
 int		solve(void);
+int		solve_helper(char **local_solvegrid);
 
 
 extern	t_grid		*grids;

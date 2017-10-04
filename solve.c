@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 09:52:42 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/02 15:08:22 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,157 @@
 int	solve(void)
 {
 	char	**local_solvegrid;
-	int		piecement;
-	int	i;
-	int	j;
+	int		p;
+	int		i;
+	int		j;
 	void	*save;
 
 	local_solvegrid = (char **)ft_memalloc(solveinfo->minimum * sizeof(char *));
 
-	piecement = 0;
+	p = 0;
 	i = 0;
 	j = 0;
 	save = grids;
 
-	while (local_solvegrid[i])
+	while (i < solveinfo->minimum)
 	{
-		local_solvegrid[i] = (char *)ft_memalloc(solveinfo->minimum * sizeof(char));
-		local_solvegrid[i] = (char *)ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
-		while (local_solvegrid[i][j])
-		{
-			if (grids->i <= 0)
-			{
-				if (nextpiece() == 0)
-					return (0);
-			}
-			if (grids->i == 2)
-			{
-				local_solvegrid[0][0] = '#';
-				local_solvegrid[0][1] = '#';
-				local_solvegrid[0][2] = '#';
-				local_solvegrid[0][3] = '#';
-				j += 4;
-			}
-			else
-			{
-				j++;
-				grids++;
-			}
-		}
+		local_solvegrid[i] = (char *)ft_memalloc((solveinfo->minimum + 1) * sizeof(char));
+		ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
 		i++;
 	}
-	i = 0;
-	printf("Min; %d\n", solveinfo->minimum);
+	printf("Bitch\n");
+	while (!solve_helper(local_solvegrid, totalpieces()))
+	{
+		solveinfo->minimum++;
+		local_solvegrid = (char **)ft_realloc(local_solvegrid, solveinfo->minimum * sizeof(char *));
+		i = 0;
+		while (local_solvegrid[i])
+		{
+			local_solvegrid[i] = (char *)ft_realloc(local_solvegrid, solveinfo->minimum * sizeof(char));
+			ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
+			i++;
+		}
+	}
+
+	// while (local_solvegrid[i])
+	// {
+	// 	if (nextpiece(local_solvegrid) == 0)
+	// 		return (0);
+	// 	p = 0;
+	// 	while (p < 3)
+	// 	{
+	// 		local_solvegrid[i][j] = '#';
+	// 		local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] = '#';
+	// 		p++;
+	// 	}
+	// 	grids->i = -grids->i;
+	// 	break;
+	// }
+	// i = 0;
 	while (local_solvegrid[i])
 	{
 		printf("%s\n", local_solvegrid[i]);
 		i++;
 	}
 	return (1);
+}
+
+int		totalpieces(void)
+{
+	int i;
+
+	i = 0;
+	while (grids[i] && grids[i].i)
+		i++;
+	return (i);
+}
+
+int		solve_helper(char **local_solvegrid, int pc)
+{
+	int i;
+
+	if (!pc)
+		return (0);
+
+	i = 0;
+	while (local_solvegrid[i])
+	{
+		ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
+		i++;
+	}
+	while ()
+	{
+
+	}
+	return (solve_helper(local_solvegrid, pc - 1));
+
+
+	// int i;
+	// int maxj;
+	// int maxi;
+	// int j;
+	// int p;
+
+	// i = 0;
+	// maxj = 0;
+	// maxi = 0;
+	// printf("123\n");
+	// if (nextpiece() == 0)
+	// 	return (0);
+	// while (local_solvegrid[i])
+	// {
+	// 	j = 0;
+	// 	while (local_solvegrid[i][j])
+	// 	{
+	// 		printf("here %c\n", local_solvegrid[i][j]);
+	// 		if (local_solvegrid[i][j] == '.')
+	// 			break ;
+	// 		j++;
+	// 	}
+	// 	if (j == solveinfo->minimum)
+	// 		i++;
+	// 	break ;
+	// }
+	// printf("got here.\n");
+	// p = 0;
+	// while (p < 3)
+	// {
+	// 	local_solvegrid[i][j] = '#';
+	// 	printf("Seg faulted after this.\n");
+	// 	if (i + pieces[grids->i].y[p] > solveinfo->minimum || j + pieces[grids->i].x[p] > solveinfo->minimum)
+	// 	{
+	// 		if (local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] == '.')
+	// 			local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] = '#';
+	// 		else
+	// 			return (0);
+	// 	}
+	// 	else
+	// 		return (0);
+	// 	printf("Before this\n");
+	// 	p++;
+	// }
+	// grids->i = -grids->i;
+	// i = 0;
+	// printf("hi\n");
+	// if (!solve_helper(local_solvegrid))
+	// 	return (0);
+	// return (1);
+}
+
+int	notallused(void)
+{
+	int n;
+	int i;
+
+	n = 0;
+	i = 0;
+	while (grids[i])
+	{
+		if (grids[i].i > 0)
+			n++;
+		i++;
+	}
+	return (n);
 }
 
 int	nextpiece(void)
@@ -73,30 +177,6 @@ int	nextpiece(void)
 		if (grids->i > 0)
 			return (1);
 		grids++;
-	}
-	return (0);
-}
-
-int		placeable(char **grid, int type, int x, int y)
-{
-	int i;
-	int j;
-
-	i = x;
-	j = y;
-	if (type == 2)
-	{
-		while (grid[i][j] && y <= (x + 3))
-		{
-			if (grid[i][j] == '#')
-				return (0);
-			else
-			{
-				i++;
-				j++;
-			}
-		}
-		return (1);
 	}
 	return (0);
 }
