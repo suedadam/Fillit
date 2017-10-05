@@ -19,7 +19,7 @@ void	add_pieces(int *x, int *y)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (pieces[i].x) // Verify this is okay.
 	{
 		i++;
@@ -75,7 +75,7 @@ int		what_type(int n, int *delta)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	while (pieces[i].x) // Verify this is okay.
 	{
 		j = 0;

@@ -33,7 +33,7 @@ int	solve(void)
 		ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
 		i++;
 	}
-	printf("Bitch\n");
+	//printf("Bitch\n");
 	while (!solve_helper(local_solvegrid, totalpieces()))
 	{
 		solveinfo->minimum++;
@@ -80,6 +80,22 @@ int		totalpieces(void)
 	return (i);
 }
 
+int		solve_helper2(char **local_solvegrid, int pc)
+{
+	int i;
+
+	for (i = 0; i < pc; i++)
+	{
+		if (grids[i].i > 0)
+		{
+			grids[i].i *= -1;
+			solve_helper2(local_solvegrid, pc);
+			grids[i].i *= -1;
+		}
+		i++;
+	}
+}
+
 int		solve_helper(char **local_solvegrid, int pc)
 {
 	int i;
@@ -95,6 +111,32 @@ int		solve_helper(char **local_solvegrid, int pc)
 	}
 	while ()
 	{
+		//We need to somehow recursively check the blocks
+		// 1 - 2 - 3 - 4
+		// 1 - 2 - 4 - 3
+		// 1 - 3 - 2 - 4
+		// 1 - 3 - 4 - 2
+		// 1 - 4 - 2 - 3
+		// 1 - 4 - 3 - 2
+		// We need a while loop that has recursivity inside of it. It would go
+		// until the end in each loop, switching to the next number and putting
+		// that one in
+		// int		fake_function(array2)
+		// {
+		// 	while (array[i])
+		// 	{
+		// 		if (i == SOMETHING IN ARRAY 2)
+					
+		// 		thisfunction(array2[i, i that was passed to this one])
+		// 		i++;
+		// 	}
+		// }
+		// 2 - 1 - 3 - 4
+		// 2 - 1 - 4 - 3
+		// 2 - 3 - 1 - 4
+		// 2 - 3 - 4 - 1
+		// 2 - 4 - 1 - 3
+		// 2 - 4 - 3 - 1
 
 	}
 	return (solve_helper(local_solvegrid, pc - 1));
