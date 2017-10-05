@@ -89,110 +89,115 @@ int		solve_helper2(char **local_solvegrid, int pc)
 		if (grids[i].i > 0)
 		{
 			grids[i].i *= -1;
-			solve_helper2(local_solvegrid, pc);
+			// create solvegrid, breakout with correct solvegrid
+			if (/*GRID WORKS CORRECTLY -- this will trigger on last nest*/ )
+				return (1);
+			else if (solve_helper2(local_solvegrid, pc))
+				return (1);
 			grids[i].i *= -1;
 		}
 		i++;
 	}
+	return (0);
 }
 
-int		solve_helper(char **local_solvegrid, int pc)
-{
-	int i;
+// int		solve_helper(char **local_solvegrid, int pc)
+// {
+// 	int i;
 
-	if (!pc)
-		return (0);
+// 	if (!pc)
+// 		return (0);
 
-	i = 0;
-	while (local_solvegrid[i])
-	{
-		ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
-		i++;
-	}
-	while ()
-	{
-		//We need to somehow recursively check the blocks
-		// 1 - 2 - 3 - 4
-		// 1 - 2 - 4 - 3
-		// 1 - 3 - 2 - 4
-		// 1 - 3 - 4 - 2
-		// 1 - 4 - 2 - 3
-		// 1 - 4 - 3 - 2
-		// We need a while loop that has recursivity inside of it. It would go
-		// until the end in each loop, switching to the next number and putting
-		// that one in
-		// int		fake_function(array2)
-		// {
-		// 	while (array[i])
-		// 	{
-		// 		if (i == SOMETHING IN ARRAY 2)
+// 	i = 0;
+// 	while (local_solvegrid[i])
+// 	{
+// 		ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
+// 		i++;
+// 	}
+// 	while ()
+// 	{
+// 		//We need to somehow recursively check the blocks
+// 		// 1 - 2 - 3 - 4
+// 		// 1 - 2 - 4 - 3
+// 		// 1 - 3 - 2 - 4
+// 		// 1 - 3 - 4 - 2
+// 		// 1 - 4 - 2 - 3
+// 		// 1 - 4 - 3 - 2
+// 		// We need a while loop that has recursivity inside of it. It would go
+// 		// until the end in each loop, switching to the next number and putting
+// 		// that one in
+// 		// int		fake_function(array2)
+// 		// {
+// 		// 	while (array[i])
+// 		// 	{
+// 		// 		if (i == SOMETHING IN ARRAY 2)
 					
-		// 		thisfunction(array2[i, i that was passed to this one])
-		// 		i++;
-		// 	}
-		// }
-		// 2 - 1 - 3 - 4
-		// 2 - 1 - 4 - 3
-		// 2 - 3 - 1 - 4
-		// 2 - 3 - 4 - 1
-		// 2 - 4 - 1 - 3
-		// 2 - 4 - 3 - 1
+// 		// 		thisfunction(array2[i, i that was passed to this one])
+// 		// 		i++;
+// 		// 	}
+// 		// }
+// 		// 2 - 1 - 3 - 4
+// 		// 2 - 1 - 4 - 3
+// 		// 2 - 3 - 1 - 4
+// 		// 2 - 3 - 4 - 1
+// 		// 2 - 4 - 1 - 3
+// 		// 2 - 4 - 3 - 1
 
-	}
-	return (solve_helper(local_solvegrid, pc - 1));
+// 	}
+// 	return (solve_helper(local_solvegrid, pc - 1));
 
 
-	// int i;
-	// int maxj;
-	// int maxi;
-	// int j;
-	// int p;
+// 	// int i;
+// 	// int maxj;
+// 	// int maxi;
+// 	// int j;
+// 	// int p;
 
-	// i = 0;
-	// maxj = 0;
-	// maxi = 0;
-	// printf("123\n");
-	// if (nextpiece() == 0)
-	// 	return (0);
-	// while (local_solvegrid[i])
-	// {
-	// 	j = 0;
-	// 	while (local_solvegrid[i][j])
-	// 	{
-	// 		printf("here %c\n", local_solvegrid[i][j]);
-	// 		if (local_solvegrid[i][j] == '.')
-	// 			break ;
-	// 		j++;
-	// 	}
-	// 	if (j == solveinfo->minimum)
-	// 		i++;
-	// 	break ;
-	// }
-	// printf("got here.\n");
-	// p = 0;
-	// while (p < 3)
-	// {
-	// 	local_solvegrid[i][j] = '#';
-	// 	printf("Seg faulted after this.\n");
-	// 	if (i + pieces[grids->i].y[p] > solveinfo->minimum || j + pieces[grids->i].x[p] > solveinfo->minimum)
-	// 	{
-	// 		if (local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] == '.')
-	// 			local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] = '#';
-	// 		else
-	// 			return (0);
-	// 	}
-	// 	else
-	// 		return (0);
-	// 	printf("Before this\n");
-	// 	p++;
-	// }
-	// grids->i = -grids->i;
-	// i = 0;
-	// printf("hi\n");
-	// if (!solve_helper(local_solvegrid))
-	// 	return (0);
-	// return (1);
-}
+// 	// i = 0;
+// 	// maxj = 0;
+// 	// maxi = 0;
+// 	// printf("123\n");
+// 	// if (nextpiece() == 0)
+// 	// 	return (0);
+// 	// while (local_solvegrid[i])
+// 	// {
+// 	// 	j = 0;
+// 	// 	while (local_solvegrid[i][j])
+// 	// 	{
+// 	// 		printf("here %c\n", local_solvegrid[i][j]);
+// 	// 		if (local_solvegrid[i][j] == '.')
+// 	// 			break ;
+// 	// 		j++;
+// 	// 	}
+// 	// 	if (j == solveinfo->minimum)
+// 	// 		i++;
+// 	// 	break ;
+// 	// }
+// 	// printf("got here.\n");
+// 	// p = 0;
+// 	// while (p < 3)
+// 	// {
+// 	// 	local_solvegrid[i][j] = '#';
+// 	// 	printf("Seg faulted after this.\n");
+// 	// 	if (i + pieces[grids->i].y[p] > solveinfo->minimum || j + pieces[grids->i].x[p] > solveinfo->minimum)
+// 	// 	{
+// 	// 		if (local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] == '.')
+// 	// 			local_solvegrid[i + pieces[grids->i].y[p]][j + pieces[grids->i].x[p]] = '#';
+// 	// 		else
+// 	// 			return (0);
+// 	// 	}
+// 	// 	else
+// 	// 		return (0);
+// 	// 	printf("Before this\n");
+// 	// 	p++;
+// 	// }
+// 	// grids->i = -grids->i;
+// 	// i = 0;
+// 	// printf("hi\n");
+// 	// if (!solve_helper(local_solvegrid))
+// 	// 	return (0);
+// 	// return (1);
+// }
 
 int	notallused(void)
 {
