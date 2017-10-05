@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 12:13:07 by asyed             #+#    #+#             */
-/*   Updated: 2017/09/29 11:34:10 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 13:17:44 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_pieces(int *x, int *y)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (pieces[i].x) // Verify this is okay.
 	{
 		i++;
@@ -75,7 +75,7 @@ int		what_type(int n, int *delta)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	while (pieces[i].x) // Verify this is okay.
 	{
 		j = 0;

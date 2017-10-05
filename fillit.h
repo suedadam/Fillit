@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 11:53:12 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 14:47:46 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,13 @@ typedef struct				s_pieces
 void	file_reader(char *filename);
 int		numofgrids(char	*buf);
 void	perform_check(char *buf);
-int		solve(void);
 int		what_type(int n, int *delta);
 void	populate_struct(void);
 int		totalplaced(void);
 int		nextpiece(void);
 void	minimumset(int small_grids);
-int		solve(void);
-int		solve_helper(char **local_solvegrid);
+void	solve(void);
+int		solve_helper2(char **local_solvegrid, int spot);
 
 
 extern	t_grid		*grids;

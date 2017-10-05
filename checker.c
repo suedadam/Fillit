@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 09:51:14 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 14:47:10 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	struct_add(int j)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (grids[i].i)
 		i++;
 	grids[i].i = j;
@@ -65,16 +65,23 @@ void	stage_one(int n, char *buf)
 
 int		error_check(char c, int i, int hash)
 {
-	if ((c != '\n') && (c != '.') && (c != '#'))
-		return (0);
-	if (i == 0 && c != '.' && c != '#')
-		return (0);
-	//if (i != 20 && (!(i + 1 % 5)) && i != 0) We must have forgotten to remove this garbage
-	//	return (0);
-	// Add in a check for having a non-newline at a divisible of 5.
 	if (hash > 4)
 		return (0);
-	if (i == 20 && (c != '\n' || hash < 4))
+	if (i == 20 && c != '\n')
+	{
+		if (c != '\n')
+			return (0);
+		else
+			return (1);
+	}
+	if ((i + 1) % 5 == 0 || i == 20)
+	{
+		if (c != '\n')
+			return (0);
+		else
+			return (1);
+	}
+	if ((i + 1) % 5 && c != '.' && c != '#')
 		return (0);
 	return (1);
 }
@@ -127,6 +134,7 @@ void		perform_check(char *buf)
 		ft_putstr("error\n");
 		exit(3);
 	}
-	printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
-	printf("Solve resp: %d\n", solve());
+	// printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
+	// printf("Solve resp: %d\n", solve());
+	solve();
 }

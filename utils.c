@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 09:50:08 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 13:47:35 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	minimumset(int small_grids)
 	i = 0;
 	while (i < small_grids)
 	{
-		if ((i * i) >= (small_grids * small_grids))
+		if ((i * i) >= (small_grids * 4))
 			break;
 		i++;
 	}

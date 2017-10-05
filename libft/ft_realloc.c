@@ -24,7 +24,6 @@ void	*ft_realloc(void *src, size_t new_size)
 		free(src);
 		return (NULL);
 	}
-
 	new = (void *)ft_memalloc(new_size);
 	if (!new)
 		return (NULL);
