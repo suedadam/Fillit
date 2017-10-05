@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 11:53:12 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 11:58:22 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		totalplaced(void);
 int		nextpiece(void);
 void	minimumset(int small_grids);
 int		solve(void);
-int		solve_helper(char **local_solvegrid);
+int		solve_helper2(char **local_solvegrid, int spot);
 
 
 extern	t_grid		*grids;

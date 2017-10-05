@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/02 09:51:14 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 12:05:47 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	struct_add(int j)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while (grids[i].i)
 		i++;
 	grids[i].i = j;
@@ -65,6 +65,8 @@ void	stage_one(int n, char *buf)
 
 int		error_check(char c, int i, int hash)
 {
+	// if (((i + 1) % 5) < 5 && c != '.' && c != '#')
+	// 	return (0);
 	if ((c != '\n') && (c != '.') && (c != '#'))
 		return (0);
 	if (i == 0 && c != '.' && c != '#')
