@@ -103,10 +103,8 @@ int		solve_helper2(char **local_solvegrid, int spot)
 	int x;
 	int y;
 	int i;
-
 	y = 0;
 	x = 0;
-
 	if (grids[spot].i)
 	{
 		while (y < solveinfo->minimum)
@@ -118,7 +116,9 @@ int		solve_helper2(char **local_solvegrid, int spot)
 				while (local_solvegrid[i])
 					i++;
 				if (solve_helper2(local_solvegrid, spot + 1))
+				{
 					return (1);
+				}
 				else
 					piece_set(local_solvegrid, x, y, spot, '.');
 			}

@@ -111,6 +111,8 @@ int		convert_buf(char *buf)
 		i++;
 		buf++;
 	}
+	if (i != 20 || (hash != 4))
+		return (0);
 	return (1);
 }
 
