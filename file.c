@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 11:42:03 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/05 14:43:42 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 19:08:24 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	file_reader(char *filename)
 	{
 		count += r;
 		if (r == BUF_SIZE)
-			buf = (char *)ft_realloc(buf, (count + 1) * sizeof(char));
+			buf = (char *)ft_realloc(buf, (count + BUF_SIZE + 1) * sizeof(char));
 	}
 	if (r < 0)
 	{

@@ -37,12 +37,12 @@ void	solve(void)
 	{
 		solveinfo->minimum++;
 		local_solvegrid = (char **)ft_realloc(local_solvegrid, (solveinfo->minimum + 1) * sizeof(char *));
-		local_solvegrid[solveinfo->minimum] = 0;;
+		local_solvegrid[solveinfo->minimum] = 0;
 		i = 0;
 		while (i < solveinfo->minimum)
 		{
 			local_solvegrid[i] = (char *)ft_realloc(local_solvegrid[i], (solveinfo->minimum + 1) * sizeof(char));
-			local_solvegrid[i][solveinfo->minimum] = '\0';
+			local_solvegrid[i][solveinfo->minimum] = 0;
 			ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
 			i++;
 		}
@@ -103,10 +103,8 @@ int		solve_helper2(char **local_solvegrid, int spot)
 	int x;
 	int y;
 	int i;
-
 	y = 0;
 	x = 0;
-
 	if (grids[spot].i)
 	{
 		while (y < solveinfo->minimum)
@@ -118,7 +116,9 @@ int		solve_helper2(char **local_solvegrid, int spot)
 				while (local_solvegrid[i])
 					i++;
 				if (solve_helper2(local_solvegrid, spot + 1))
+				{
 					return (1);
+				}
 				else
 					piece_set(local_solvegrid, x, y, spot, '.');
 			}
