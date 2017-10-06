@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/05 14:47:10 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/05 19:07:06 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void		perform_check(char *buf)
 
 	small_grids = numofgrids(buf);
 	solveinfo = (t_info *)ft_memalloc(sizeof(solveinfo));
-	grids = (t_grid *)ft_memalloc((small_grids * 5 / 8) + 2);
+	grids = (t_grid *)ft_memalloc((small_grids * 5) / 8 + 3);
 	solveinfo = (t_info *)ft_memalloc(sizeof(struct s_info *));
 	solveinfo->minimum = small_grids;
 	if (!grids)
