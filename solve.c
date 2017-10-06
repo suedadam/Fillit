@@ -15,16 +15,10 @@
 void	solve(void)
 {
 	char	**local_solvegrid;
-	int		p;
 	int		i;
-	int		j;
-	void	*save;
 
 	local_solvegrid = (char **)ft_memalloc((g_solveinfo->minimum + 1) * sizeof(char *));
-	p = 0;
 	i = 0;
-	j = 0;
-	save = g_grids;
 	while (i < g_solveinfo->minimum)
 	{
 		local_solvegrid[i] = (char *)ft_memalloc((g_solveinfo->minimum + 1) * sizeof(char));
@@ -52,16 +46,6 @@ void	solve(void)
 		ft_putchar('\n');
 		i++;
 	}
-}
-
-int		totalpieces(void)
-{
-	int i;
-
-	i = 0;
-	while (g_grids[i].i)
-		i++;
-	return (i);
 }
 
 int		piece_fits(char **local_solvegrid, int x, int y, int spot)

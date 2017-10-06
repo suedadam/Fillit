@@ -15,7 +15,7 @@
 t_grid	*g_grids;
 t_info	*g_solveinfo;
 
-int		numofgrids(char	*buf)
+int		numofgrids(char *buf)
 {
 	int	i;
 
@@ -100,7 +100,7 @@ int		convert_buf(char *buf)
 	return (i != 20 || (hash != 4) ? 0 : 1);
 }
 
-void		perform_check(char *buf)
+void	perform_check(char *buf)
 {
 	int small_grids;
 
