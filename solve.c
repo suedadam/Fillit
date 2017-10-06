@@ -17,25 +17,35 @@ void	solve(void)
 	char	**local_solvegrid;
 	int		i;
 
-	local_solvegrid = (char **)ft_memalloc((g_solveinfo->minimum + 1) * sizeof(char *));
+	local_solvegrid = (char **)ft_memalloc((g_solveinfo->minimum + 1) *
+		sizeof(char *));
 	i = 0;
 	while (i < g_solveinfo->minimum)
 	{
-		local_solvegrid[i] = (char *)ft_memalloc((g_solveinfo->minimum + 1) * sizeof(char));
+		local_solvegrid[i] = (char *)ft_memalloc((g_solveinfo->minimum + 1) *
+			sizeof(char));
 		ft_memset(local_solvegrid[i], '.', g_solveinfo->minimum * sizeof(char));
 		i++;
 	}
+	solve_stage_2(local_solvegrid, 0);
+}
+
+void	solve_stage_2(char **local_solvegrid, int i)
+{
 	while (!solve_helper(local_solvegrid, 1))
 	{
 		g_solveinfo->minimum++;
-		local_solvegrid = (char **)ft_realloc(local_solvegrid, (g_solveinfo->minimum + 1) * sizeof(char *));
+		local_solvegrid = (char **)ft_realloc(local_solvegrid,
+			(g_solveinfo->minimum + 1) * sizeof(char *));
 		local_solvegrid[g_solveinfo->minimum] = 0;
 		i = 0;
 		while (i < g_solveinfo->minimum)
 		{
-			local_solvegrid[i] = (char *)ft_realloc(local_solvegrid[i], (g_solveinfo->minimum + 1) * sizeof(char));
+			local_solvegrid[i] = (char *)ft_realloc(local_solvegrid[i],
+				(g_solveinfo->minimum + 1) * sizeof(char));
 			local_solvegrid[i][g_solveinfo->minimum] = 0;
-			ft_memset(local_solvegrid[i], '.', g_solveinfo->minimum * sizeof(char));
+			ft_memset(local_solvegrid[i], '.', g_solveinfo->minimum *
+				sizeof(char));
 			i++;
 		}
 	}
@@ -102,9 +112,7 @@ int		solve_helper(char **local_solvegrid, int spot)
 				while (local_solvegrid[i])
 					i++;
 				if (solve_helper(local_solvegrid, spot + 1))
-				{
 					return (1);
-				}
 				else
 					piece_set(local_solvegrid, x, y, spot, '.');
 			}

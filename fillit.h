@@ -46,6 +46,7 @@ void						file_reader(char *filename);
 int							struct_add(int j);
 void						minimumset(int small_grids);
 void						solve(void);
+void						solve_stage_2(char **local_solvegrid, int i);
 int							piece_fits(char **local_solvegrid, int x, int y,
 							int spot);
 void						piece_set(char **local_solvegrid, int x, int y,
