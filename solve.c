@@ -101,30 +101,22 @@ int		solve_helper(char **local_solvegrid, int spot)
 
 	y = 0;
 	x = 0;
-	if (g_grids[spot].i)
+	if (!g_grids[spot].i)
+		return (1);
+	while (y < g_solveinfo->minimum)
 	{
-		while (y < g_solveinfo->minimum)
+		if (piece_fits(local_solvegrid, x, y, spot))
 		{
-			if (piece_fits(local_solvegrid, x, y, spot))
-			{
-				piece_set(local_solvegrid, x, y, spot, ('A' + spot - 1));
-				i = 0;
-				while (local_solvegrid[i])
-					i++;
-				if (solve_helper(local_solvegrid, spot + 1))
-					return (1);
-				else
-					piece_set(local_solvegrid, x, y, spot, '.');
-			}
-			if (x == (g_solveinfo->minimum - 1))
-			{
-				x = 0;
-				y++;
-			}
+			piece_set(local_solvegrid, x, y, spot, ('A' + spot - 1));
+			i = 0;
+			while (local_solvegrid[i])
+				i++;
+			if (solve_helper(local_solvegrid, spot + 1))
+				return (1);
 			else
-				x++;
+				piece_set(local_solvegrid, x, y, spot, '.');
 		}
-		return (0);
+		x = (x == (g_solveinfo->minimum - 1) && ++y) ? (0) : (x + 1);
 	}
-	return (1);
+	return (0);
 }
