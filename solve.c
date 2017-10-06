@@ -37,12 +37,12 @@ void	solve(void)
 	{
 		solveinfo->minimum++;
 		local_solvegrid = (char **)ft_realloc(local_solvegrid, (solveinfo->minimum + 1) * sizeof(char *));
-		local_solvegrid[solveinfo->minimum] = 0;;
+		local_solvegrid[solveinfo->minimum] = 0;
 		i = 0;
 		while (i < solveinfo->minimum)
 		{
 			local_solvegrid[i] = (char *)ft_realloc(local_solvegrid[i], (solveinfo->minimum + 1) * sizeof(char));
-			local_solvegrid[i][solveinfo->minimum] = '\0';
+			local_solvegrid[i][solveinfo->minimum] = 0;
 			ft_memset(local_solvegrid[i], '.', solveinfo->minimum * sizeof(char));
 			i++;
 		}
