@@ -18,7 +18,6 @@ int	main(int argc, char *argv[])
 	{
 		populate_struct();
 		file_reader(argv[1]);
-		// printf("MAIN GRIDS: :%d, %d, %d, %d\n", grids[1].i, grids[2].i, grids[3].i, grids[4].i);
 	}
 	else
 	{

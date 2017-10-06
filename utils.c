@@ -20,8 +20,19 @@ void	minimumset(int small_grids)
 	while (i < small_grids)
 	{
 		if ((i * i) >= (small_grids * 4))
-			break;
+			break ;
 		i++;
 	}
-	solveinfo->minimum = i;
+	g_solveinfo->minimum = i;
+}
+
+int		struct_add(int j)
+{
+	int i;
+
+	i = 1;
+	while (g_grids[i].i)
+		i++;
+	g_grids[i].i = j;
+	return (1);
 }
