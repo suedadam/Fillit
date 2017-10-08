@@ -49,8 +49,6 @@ void						solve(void);
 void						solve_stage_2(char **local_solvegrid, int i);
 int							piece_fits(char **local_solvegrid, int x, int y,
 							int spot);
-void						piece_set(char **local_solvegrid, int x, int y,
-							int spot, char c);
 int							solve_helper(char **local_solvegrid, int spot);
 void						add_pieces(int *x, int *y);
 int							*make_array(int x, int x2, int x3);
