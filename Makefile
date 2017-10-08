@@ -33,5 +33,3 @@ fclean: clean
 	@echo "\033[32mRemoved Executable\033[0m"
 
 re: fclean all
-
-# gcc libft/libft.a *.c -Wall -Werror -Wextra -I libft 
