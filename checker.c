@@ -6,18 +6,16 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/06 10:46:49 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/07 18:22:53 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fillit.h"
-#include <stdio.h>
 
-t_grid	*grids;
-t_info	*solveinfo;
+t_grid	*g_grids;
+t_info	*g_solveinfo;
 
-int		numofgrids(char	*buf)
+int		numofgrids(char *buf)
 {
 	int	i;
 
@@ -31,23 +29,12 @@ int		numofgrids(char	*buf)
 	return (i);
 }
 
-int	struct_add(int j)
-{
-	int i;
-
-	i = 1;
-	while (grids[i].i)
-		i++;
-	grids[i].i = j;
-	return (1);
-}
-
-
 void	stage_one(int n, char *buf)
 {
 	int delta[3];
 	int i;
 	int j;
+	int k;
 
 	i = 1;
 	j = 0;
@@ -60,7 +47,13 @@ void	stage_one(int n, char *buf)
 		}
 		i++;
 	}
-	struct_add(what_type(n, delta));
+	if ((k = what_type(n, delta)))
+		struct_add(k);
+	else
+	{
+		ft_putstr("error\n");
+		exit(2);
+	}
 }
 
 int		error_check(char c, int i, int hash)
@@ -111,23 +104,21 @@ int		convert_buf(char *buf)
 		i++;
 		buf++;
 	}
-	if (i != 20 || (hash != 4))
-		return (0);
-	return (1);
+	return (i != 20 || (hash != 4) ? 0 : 1);
 }
 
-void		perform_check(char *buf)
+void	perform_check(char *buf)
 {
 	int small_grids;
 
 	small_grids = numofgrids(buf);
-	solveinfo = (t_info *)ft_memalloc(sizeof(solveinfo));
-	grids = (t_grid *)ft_memalloc(small_grids + 1);
-	solveinfo = (t_info *)ft_memalloc(sizeof(struct s_info *));
-	solveinfo->minimum = small_grids;
-	if (!grids)
+	g_solveinfo = (t_info *)ft_memalloc(sizeof(g_solveinfo));
+	g_grids = (t_grid *)ft_memalloc(small_grids + 1);
+	g_solveinfo = (t_info *)ft_memalloc(sizeof(struct s_info *));
+	g_solveinfo->minimum = small_grids;
+	if (!g_grids)
 	{
-		ft_putstr("Error in allocating small grids!");
+		ft_putstr("error\n");
 		exit(2);
 	}
 	minimumset(small_grids);
@@ -136,7 +127,5 @@ void		perform_check(char *buf)
 		ft_putstr("error\n");
 		exit(3);
 	}
-	// printf("We malloc'd %d grids for a size of %lu bytes\n", small_grids, small_grids * sizeof(struct s_grid *));
-	// printf("Solve resp: %d\n", solve());
 	solve();
 }

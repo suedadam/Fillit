@@ -33,7 +33,8 @@ void	file_reader(char *filename)
 	{
 		count += r;
 		if (r == BUF_SIZE)
-			buf = (char *)ft_realloc(buf, (count + BUF_SIZE + 1) * sizeof(char));
+			buf = (char *)ft_realloc(buf, (count + BUF_SIZE + 1) *
+				sizeof(char));
 	}
 	if (r < 0)
 	{
