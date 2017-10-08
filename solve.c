@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/05 14:47:29 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/07 18:30:06 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,6 @@ int		piece_fits(char **local_solvegrid, int x, int y, int spot)
 	return (1);
 }
 
-void	piece_set(char **local_solvegrid, int x, int y, int spot, char c)
-{
-	int pc;
-
-	pc = 0;
-	local_solvegrid[y][x] = c;
-	while (pc < 3)
-	{
-		local_solvegrid[y + g_pieces[g_grids[spot].i].y[pc]]
-		[x + g_pieces[g_grids[spot].i].x[pc]] = c;
-		pc++;
-	}
-}
-
 int		solve_helper(char **local_solvegrid, int spot)
 {
 	int x;
@@ -107,14 +93,14 @@ int		solve_helper(char **local_solvegrid, int spot)
 	{
 		if (piece_fits(local_solvegrid, x, y, spot))
 		{
-			piece_set(local_solvegrid, x, y, spot, ('A' + spot - 1));
+			piece_set(local_solvegrid, x, y, spot);
 			i = 0;
 			while (local_solvegrid[i])
 				i++;
 			if (solve_helper(local_solvegrid, spot + 1))
 				return (1);
 			else
-				piece_set(local_solvegrid, x, y, spot, '.');
+				piece_unset(local_solvegrid, x, y, spot);
 		}
 		x = (x == (g_solveinfo->minimum - 1) && ++y) ? (0) : (x + 1);
 	}

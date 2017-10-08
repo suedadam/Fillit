@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/02 09:49:28 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/07 18:22:56 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/07 18:30:42 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef struct				s_grid
 {
 	uint8_t	i:5;
-} __attribute__((packed))	t_grid;
+}	__attribute__((packed))	t_grid;
 
 typedef struct				s_info
 {
@@ -63,6 +63,10 @@ void						stage_one(int n, char *buf);
 int							error_check(char c, int i, int hash);
 int							convert_buf(char *buf);
 void						perform_check(char *buf);
+void						piece_set(char **local_solvegrid, int x, int y,
+							int spot);
+void						piece_unset(char **local_solvegrid, int x, int y,
+							int spot);
 
 extern	t_grid		*g_grids;
 extern	t_info		*g_solveinfo;
