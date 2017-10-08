@@ -34,6 +34,7 @@ void	stage_one(int n, char *buf)
 	int delta[3];
 	int i;
 	int j;
+	int k;
 
 	i = 1;
 	j = 0;
@@ -46,7 +47,13 @@ void	stage_one(int n, char *buf)
 		}
 		i++;
 	}
-	struct_add(what_type(n, delta));
+	if ((k = what_type(n, delta)))
+		struct_add(k);
+	else
+	{
+		ft_putstr("error\n");
+		exit(2);
+	}
 }
 
 int		error_check(char c, int i, int hash)
@@ -111,7 +118,7 @@ void	perform_check(char *buf)
 	g_solveinfo->minimum = small_grids;
 	if (!g_grids)
 	{
-		ft_putstr("Error in allocating small grids!");
+		ft_putstr("error\n");
 		exit(2);
 	}
 	minimumset(small_grids);

@@ -89,6 +89,5 @@ int		what_type(int n, int *delta)
 		}
 		i++;
 	}
-	ft_putstr("error\n");
-	exit(3);
+	return (0);
 }
