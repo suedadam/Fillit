@@ -6,7 +6,7 @@
 /*   By: asyed <asyed@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 12:13:07 by asyed             #+#    #+#             */
-/*   Updated: 2017/10/05 13:17:44 by asyed            ###   ########.fr       */
+/*   Updated: 2017/10/07 18:22:40 by asyed            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		*make_array(int x, int x2, int x3)
 
 void	populate_struct(void)
 {
-	g_pieces = (t_pieces *)ft_memalloc((20) * sizeof(t_pieces));
+	g_pieces = (t_pieces *)ft_memalloc((21) * sizeof(t_pieces));
 	add_pieces(make_array(1, 0, 1), make_array(0, 1, 1));
 	add_pieces(make_array(1, 2, 3), make_array(0, 0, 0));
 	add_pieces(make_array(0, 0, 0), make_array(1, 2, 3));
